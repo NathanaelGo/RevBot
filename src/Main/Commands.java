@@ -1,12 +1,15 @@
 package Main;
 
+import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageChannel;
+import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 public class Commands extends ListenerAdapter {
 
+    public static JDA jda;
 
     public static final String OKHAND = "\uD83D\uDC4C";
     public static final String SIX = ":six:";
@@ -17,6 +20,7 @@ public class Commands extends ListenerAdapter {
     @Override
     public void onMessageReceived(MessageReceivedEvent event)
     {
+
         if (event.getAuthor().isBot()) return;
         Message message = event.getMessage();
         String content = message.getContentRaw();
@@ -38,11 +42,11 @@ public class Commands extends ListenerAdapter {
             channel.sendMessage(OKHAND).complete();
         }
 
-        if(args[0].equalsIgnoreCase(main.prefix + "help"))
+        if(args[0].equalsIgnoreCase(main.prefix + "codehelp"))
         {
             MessageChannel channel = event.getChannel();
-            for(int i = 0; i<50; i++)
-            {channel.sendMessage("help").complete();}
+            for(int i = 1; i<24; i++)
+            {channel.sendMessage("help " + i).complete();}
         }
         if(args[0].equalsIgnoreCase(main.prefix+"help"))
         {
@@ -55,13 +59,15 @@ public class Commands extends ListenerAdapter {
                     main.prefix + "12thman - gives the user a link to the tamu football website \n" +
                     main.prefix + "cafeteria help - gives the user a prompt of how to use the cafeteria command \n" +
                     main.prefix + "cafeteria [name] [day] - returns the time period(s) the dining hall is open for that day \n" +
+                    main.prefix + "WhereIsRev - returns the last recorded position the Queen was at \n" +
+                    main.prefix + "RevIsAt - sets Revielle \n" +
                     "```").complete();
         }
 
         if(args[0].equalsIgnoreCase(main.prefix + "whereIsRev") || args[0].equalsIgnoreCase(main.prefix + "wir"))
         {
             MessageChannel channel = event.getChannel();
-            channel.sendMessage("Rev was located at the " + Fakebase.revLoc + " at " + Fakebase.revTime).complete();
+            channel.sendMessage("Rev was located at the **" + Fakebase.revLoc + "** as of **" + Fakebase.revTime + "**").complete();
 
         }
 
@@ -69,8 +75,10 @@ public class Commands extends ListenerAdapter {
         {
             Fakebase.revLoc = args[1];
             Fakebase.revTime = (message.getCreationTime().getHour()+7)%12 + ":" + message.getCreationTime().getMinute();
+            event.getChannel().sendMessage("<@&620082494468915201> REV's LOCATION HAS BEEN UPDATED \n Rev was located at the **" + Fakebase.revLoc + "** as of **" + Fakebase.revTime + "**").queue();
+            //Rev fan club role <@&620082494468915201>
         }
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
