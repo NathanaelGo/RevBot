@@ -20,7 +20,7 @@ public class Commands extends ListenerAdapter {
         if (event.getAuthor().isBot()) return;
         Message message = event.getMessage();
         String content = message.getContentRaw();
-        String[] args = content.split("//s+");
+        String[] args = content.split("\\s+");
         // getContentRaw() is an atomic getter
         // getContentDisplay() is a lazy getter which modifies the content for e.g. console view (strip discord formatting)
 
@@ -57,6 +57,24 @@ public class Commands extends ListenerAdapter {
                     main.prefix + "cafeteria [name] [day] - returns the time period(s) the dining hall is open for that day \n" +
                     "```").complete();
         }
+
+        if(args[0].equalsIgnoreCase(main.prefix + "whereIsRev") || args[0].equalsIgnoreCase(main.prefix + "wir"))
+        {
+            MessageChannel channel = event.getChannel();
+            channel.sendMessage("Rev was located at the " + Fakebase.revLoc + " at " + Fakebase.revTime).complete();
+
+        }
+
+        if(args[0].equalsIgnoreCase(main.prefix + "setRevLoc") || args[0].equalsIgnoreCase(main.prefix + "revisat"))
+        {
+            Fakebase.revLoc = args[1];
+            Fakebase.revTime = (message.getCreationTime().getHour()+7)%12 + ":" + message.getCreationTime().getMinute();
+        }
+
+
+
+
+
 
 
 
