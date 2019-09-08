@@ -60,7 +60,7 @@ public class Commands extends ListenerAdapter {
                     main.prefix + "cafeteria help - gives the user a prompt of how to use the cafeteria command \n" +
                     main.prefix + "cafeteria [name] [day] - returns the time period(s) the dining hall is open for that day \n" +
                     main.prefix + "WhereIsRev - returns the last recorded position the Queen was at \n" +
-                    main.prefix + "RevIsAt - sets Revielle \n" +
+                    main.prefix + "RevIsAt [location] - sets Reveille's location and pings the Rev Fan Club \n" +
                     "```").complete();
         }
 

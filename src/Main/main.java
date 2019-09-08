@@ -11,7 +11,7 @@ public class main
 {
     public static JDA jda;
     public static String prefix = "rev.";
-    private static String token = "NjE5OTI3OTkyOTY1MjY3NTA2.XXReFg.cwOYOZU__3w0ezDtLfQmTocVhYg";
+    private static String token = "NjE5OTI3OTkyOTY1MjY3NTA2.XXUc5Q.pvbWY3dTp7o6U85Ng6Q4-gK4qog";
 
     public static void main(String[] args) throws LoginException {
 /*
